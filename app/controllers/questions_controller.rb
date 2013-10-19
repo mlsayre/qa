@@ -1,6 +1,9 @@
 class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
+before_filter :authenticate_user!
+# before_filter :contributor_find
+
   def index
     @questions = Question.all
 
@@ -14,6 +17,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @question = Question.find(params[:id])
+    @contributors = @question.users
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,6 +39,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1/edit
   def edit
     @question = Question.find(params[:id])
+    @question.users << current_user
   end
 
   # POST /questions
@@ -44,6 +49,8 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
+        @question.users << current_user
+
         format.html { redirect_to @question, notice: 'Question was successfully created.' }
         format.json { render json: @question, status: :created, location: @question }
       else
@@ -80,4 +87,5 @@ class QuestionsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
