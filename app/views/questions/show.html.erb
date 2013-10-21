@@ -11,9 +11,10 @@
 </p>
 
 <p>
-  <b>Contributors:</b>
-  <%= @question.users %>
-
+  <b>Latest Contributors:</b><br />
+  <% @question.users.each do|user| %>
+  <%= user.email %><br />
+  <% end %>
 </p>
 
 

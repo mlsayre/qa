@@ -17,7 +17,8 @@ before_filter :authenticate_user!
   # GET /questions/1.json
   def show
     @question = Question.find(params[:id])
-    @contributors = @question.users
+    #@contributors = @question.users
+    @question = Question.includes(:users).find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
