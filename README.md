@@ -9,4 +9,4 @@ Note: This page was very useful in helping me figure out how to list the names f
 
 Screenshot: (listing contributors on a question)
 
-[Screenshot](/raw.github.com/mlsayre/qa/master/app/assets/images/qa1.png)
+![Screenshot](https://raw.github.com/mlsayre/qa/master/app/assets/images/qa1.png)
